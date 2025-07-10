@@ -35,31 +35,35 @@ $router->get("/empresa", "EmpresaController:cadastro_empresa");
 
 $router->get("/logout", ("AuthWebController:logout"));
 
-/*
- * Grupos
- */
+$router->group("admin/grupos");
 
-$router->get("/grupos", "GroupController:index");
-$router->get("/grupos/{id}", "GroupController:open");
-$router->get("/grupos/create", "GroupController:create");
-$router->post("/grupos", "GroupController:save");
-$router->post("/grupos/{id}/delete", "GroupController:destroy");
+$router->get("/", "GroupController:index");
+$router->get("/{id}", "GroupController:open");
+$router->get("/create", "GroupController:create");
+$router->post("/", "GroupController:save");
+$router->post("/{id}/delete", "GroupController:destroy");
 
 
 /*
  * Produtos
  */
 
-$router->get("/produtos", "ProductController:index");
-$router->get("/produtos/{id}", "ProductController:update");
-$router->get("/produtos/create", "ProductController:create");
-$router->post("/produtos", "ProductController:save");
-$router->post("/produtos/{id}", "ProductController:destroy");
+$router->group("admin/produtos");
 
+$router->get("/", "ProductController:index");
+$router->get("/{id}", "ProductController:update");
+$router->get("/create", "ProductController:create");
+$router->post("/", "ProductController:save");
+$router->post("/{id}", "ProductController:destroy");
 
+/*
+* Importar CSV
+*/
+$router->group("admin/excel");
 
-
-
+$router->get("/", "ImportController:index");
+$router->post("/importar", "ImportController:processar");
+$router->get("/processar", "ImportController:processar");
 
 
 $router->group("ops");

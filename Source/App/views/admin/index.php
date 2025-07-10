@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="stat-card">
-                    <a href="excel.php" class="menu-card">
+                    <a href="<?= url("admin/excel") ?>" class="menu-card">
                         <div class="menu-icon">
                             <i class="fas fa-file-import"></i>
                         </div>
