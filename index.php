@@ -66,8 +66,35 @@ $router->post("/importar", "ImportController:processar");
 $router->get("/processar", "ImportController:processar");
 
 
+/*
+* Configurações
+*/
+
+$router->group("admin/configuracoes");
+$router->get("/", "ConfigController:index");
+
+/*
+* Contato
+*/
+
+$router->group("admin/contato");
+$router->get("/", "ContactController:index");
+$router->post("/", "ContactController:save");
+
+
+/*
+ * Tabela de Preços
+ */
+$router->group("admin/tabela-precos");
+$router->get("/", "TabelaPrecosController:index");
+
+/*
+ * ERROR
+ */
+
 $router->group("ops");
 $router->get("/{errcode}", "WebController:error");
+
 
 /**
  * PROCESS

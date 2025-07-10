@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="stat-card">
-                    <a href="configuracoes.php" class="menu-card">
+                    <a href="<?= url("admin/configuracoes") ?>" class="menu-card">
                         <div class="menu-icon">
                             <i class="fas fa-cogs"></i>
                         </div>
@@ -94,7 +94,7 @@
                 </div>
 
                 <div class="stat-card">
-                    <a href="contato.php" class="menu-card">
+                    <a href="<?= url("admin/contato") ?>" class="menu-card">
                         <div class="menu-icon">
                             <i class="fas fa-headset"></i>
                         </div>

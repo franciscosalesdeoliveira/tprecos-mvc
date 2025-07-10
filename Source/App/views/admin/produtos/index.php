@@ -86,7 +86,7 @@
                 </div>
 
                 <!-- Tabela -->
-                <div class="table-container">
+                <div class="container">
                     <table class="table table-hover table-striped mb-0">
                         <thead class="sticky-header">
                             <tr>

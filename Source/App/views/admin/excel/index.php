@@ -55,11 +55,7 @@
                                 </button>
                             </div>
 
-                            <div class="form-group" style="margin-bottom: 0;">
-                                <a href="<?= url("admin/index"); ?>" class="btn btn-primary">
-                                    <i class="fas fa-home me-1"></i> Página Inicial
-                                </a>
-                            </div>
+                         
                         </form>
                     </div>
                 </div>
