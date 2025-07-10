@@ -112,26 +112,27 @@
                                         <?php if (isset($produto['ativo'])): ?>
                                             <span class="badge <?= $produto['ativo'] ? 'bg-success' : 'bg-danger' ?>">
                                                 <?= $produto['ativo'] ? 'Ativo' : 'Inativo' ?>
-                                            </span> fwf
+                                            </span>
                                         <?php else: ?>
                                             <span class="badge bg-success">Ativo</span>
                                         <?php endif; ?>
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center d-flex justify-content-center">
                                         <div class="d-flex justify-content-center">
                                             <a title="Editar" class="btn btn-primary btn-action" href="<?= url("admin/produtos/{$produto['id']}"); ?>&acao=editar&id=<?= $produto['id'] ?>">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <?php
-                                            $ativo = isset($produto['ativo']) ? $produto['ativo'] : 1;
-                                            $acaoCor = $ativo ? 'warning' : 'success';
-                                            $acaoIcone = $ativo ? 'fa-toggle-off' : 'fa-toggle-on';
-                                            ?>
+                                            <form id="del<?= $produto['id'] ?>"
+                                                action="<?= url("admin/produtos/{$produto['id']}"); ?>&acao=excluir&id=<?= $produto['id'] ?>"
+                                                method="POST"
+                                                style="display:inline;">
 
-                                            <a title="Excluir" class="btn btn-danger btn-action" href="excluir_produto.php?id=<?= $produto['id'] ?>"
-                                                onclick="return confirm('Tem certeza que deseja excluir este produto?');">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
+                                                <!-- Botão de Excluir -->
+                                                <button type="button" class="btn btn-danger btn-action"
+                                                    onclick="if(confirm('Tem certeza que deseja excluir este produto?')) { document.getElementById('del<?= $produto['id'] ?>').submit(); }">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>

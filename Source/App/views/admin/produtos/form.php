@@ -24,7 +24,7 @@
     <div class="row mb-4">
         <div class="col-12">
             <div class="form-section">
-                <form method="POST" action="<?php echo url('admin/produtos/save'); ?>" class="row">
+                <form method="POST" action="<?php echo url('admin/produtos'); ?>" class="row">
                     <?php if (isset($produto_id)): ?>
                         <input type="hidden" name="id" value="<?php echo htmlspecialchars($produto_id); ?>">
                     <?php endif; ?>

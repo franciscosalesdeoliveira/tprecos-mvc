@@ -110,6 +110,7 @@ class GroupController extends BaseControllerAdmin
 
     public function destroy($data): void
     {
+       
         $dataDB = (new Grupos())->findById($data['id']);
 
         if ($dataDB == null) {
@@ -123,5 +124,4 @@ class GroupController extends BaseControllerAdmin
 
         header('Location: ' . url("admin/grupos"));
     }
-
 }

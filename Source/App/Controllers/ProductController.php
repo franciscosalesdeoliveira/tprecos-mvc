@@ -117,13 +117,8 @@ class ProductController extends BaseControllerAdmin
         echo $this->view->render("produtos/form", [
             "title" => "Administração - Produtos",
             "crumb" => "<a href='" . url("admin/produtos/create") . "'>Adicionar Produto</a>",
-            "grupos" => $grupos,
-            "nome" => "",
-            "descricao" => "",
-            "grupo_id" => "",
-            "preco" => "",
-            "ativo" => 1,
-            "erros" => []
+            "produtos" => (new Produtos())->find()->fetch(true),
+            "grupos" => $grupos
         ]);
     }
 
@@ -182,6 +177,12 @@ class ProductController extends BaseControllerAdmin
 
             $dataDB->nome = $data["nome"];
 
+            $dataDB->descricao = $data["descricao"];
+
+            $dataDB->grupo_id = $data["grupo_id"];
+
+            $dataDB->preco = $data["preco"];
+
             $dataDB->ativo = $data["ativo"];
 
             $inicio = false;
@@ -201,26 +202,26 @@ class ProductController extends BaseControllerAdmin
             $this->retorno($data);
     }
 
-    private function showFormWithErrors($data, $erros)
-    {
-        // Buscar grupos para o formulário
-        $sql = "SELECT id, nome FROM grupos ORDER BY nome";
-        $stmt = $this->pdo->query($sql);
-        $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // private function showFormWithErrors($data, $erros)
+    // {
+    //     // Buscar grupos para o formulário
+    //     $sql = "SELECT id, nome FROM grupos ORDER BY nome";
+    //     $stmt = $this->pdo->query($sql);
+    //     $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        echo $this->view->render("produtos/form", [
-            "title" => "Administração - Produtos",
-            "crumb" => isset($data['id']) ? "<a href='" . url("admin/produtos/" . $data['id']) . "'>Atualizar Produto</a>" : "<a href='" . url("admin/produtos/create") . "'>Adicionar Produto</a>",
-            "grupos" => $grupos,
-            "nome" => $data['nome'] ?? "",
-            "descricao" => $data['descricao'] ?? "",
-            "grupo_id" => $data['grupo_id'] ?? "",
-            "preco" => $data['preco'] ?? "",
-            "ativo" => isset($data['ativo']) ? 1 : 0,
-            "produto_id" => $data['id'] ?? null,
-            "erros" => $erros
-        ]);
-    }
+    //     echo $this->view->render("produtos/form", [
+    //         "title" => "Administração - Produtos",
+    //         "crumb" => isset($data['id']) ? "<a href='" . url("admin/produtos/" . $data['id']) . "'>Atualizar Produto</a>" : "<a href='" . url("admin/produtos/create") . "'>Adicionar Produto</a>",
+    //         "grupos" => $grupos,
+    //         "nome" => $data['nome'] ?? "",
+    //         "descricao" => $data['descricao'] ?? "",
+    //         "grupo_id" => $data['grupo_id'] ?? "",
+    //         "preco" => $data['preco'] ?? "",
+    //         "ativo" => isset($data['ativo']) ? 1 : 0,
+    //         "produto_id" => $data['id'] ?? null,
+    //         "erros" => $erros
+    //     ]);
+    // }
 
     private function retorno(array $data)
     {

@@ -43,7 +43,8 @@ $router->get("/grupos", "GroupController:index");
 $router->get("/grupos/{id}", "GroupController:open");
 $router->get("/grupos/create", "GroupController:create");
 $router->post("/grupos", "GroupController:save");
-$router->post("/grupos/{id}", "GroupController:destroy");
+$router->post("/grupos/{id}/delete", "GroupController:destroy");
+
 
 /*
  * Produtos

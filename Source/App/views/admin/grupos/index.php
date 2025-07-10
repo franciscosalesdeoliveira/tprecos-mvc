@@ -1,6 +1,8 @@
 <?php $this->layout("_theme"); ?>
 
 <?php $this->start("conteudo"); ?>
+
+
 <a href="<?= url("admin/grupos/create"); ?>" class="btn btn-primary mb-3">
   <i class="fas fa-plus"></i> Adicionar
 </a>
@@ -35,11 +37,17 @@
               <a class="btn btn-primary" href="<?= url("admin/grupos/{$value->id}"); ?>">
                 <i class="fas fa-edit"></i>
               </a>
-              <form id="del<?= $value->id ?>" action="<?= url("admin/grupos/{$value->id}"); ?>" method="POST" style="display: inline;">
-                <a href="#" class="btn btn-danger " onclick="if(confirm('Deseja excluir o grupo e todos os seus produtos?')) document.getElementById('del<?= $value->id ?>').submit()">
+              <form id="del<?= $value->id ?>"
+                action="<?= url("admin/grupos/{$value->id}/delete"); ?>"
+                method="POST"
+                style="display:inline;">
+
+                <button type="button" class="btn btn-danger"
+                  onclick="if(confirm('Deseja excluir o grupo <?= $value->nome ?> e todos os seus produtos?')) { document.getElementById('del<?= $value->id ?>').submit(); }">
                   <i class="fas fa-trash-alt"></i>
-                </a>
+                </button>
               </form>
+
             </td>
           </tr>
         <?php endforeach; ?>
@@ -47,4 +55,5 @@
     </tbody>
   </table>
 </div>
+
 <?php $this->stop(); ?>

@@ -38,6 +38,19 @@
     </nav>
 
     <main class="main_content">
+        <?php if (!empty($_SESSION['messageSuccess'])): ?>
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert" id="alert-message">
+                <?= $_SESSION['messageSuccess'];
+                unset($_SESSION['messageSuccess']); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($_SESSION['messageError'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" id="alert-message">
+                <?= $_SESSION['messageError'];
+                unset($_SESSION['messageError']); ?>
+            </div>
+        <?php endif; ?>
         <?= $this->section("conteudo"); ?>
     </main>
 
@@ -67,6 +80,16 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <?= $this->section("scripts"); ?>
+    <script>
+        setTimeout(function() {
+            const alert = document.getElementById('alert-message');
+            if (alert) {
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                setTimeout(() => alert.remove(), 500); // remove do DOM
+            }
+        }, 500); // 500ms
+    </script>
 
 </body>
 
