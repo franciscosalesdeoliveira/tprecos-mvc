@@ -1,0 +1,26 @@
+{
+  "name": "franciscosalesdeoliveira/php-mvc",
+  "description": "Descomplicando MVC com PHP do JEITO CERTO!",
+  "version": "1.0.0",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Francisco Sales de Oliveira",
+      "email": "franciscosalesdeoliveira@outlook.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Source\\": "Source/"
+    },
+    "files": [
+      "Source/Config.php"
+    ]
+  },
+  "require": {
+    "coffeecode/datalayer": "1.1.*",
+    "coffeecode/router": "^2.0",
+    "league/plates": "^3.6"
+  }
+}
