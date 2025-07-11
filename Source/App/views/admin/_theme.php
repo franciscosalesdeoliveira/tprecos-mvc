@@ -28,8 +28,8 @@
 
         else:
         ?>
-            <a title="" href="<?= url("admin/index"); ?>">Home</a>
-            <a title="" href="<?= url("contato") ?>">Contato</a>
+            <a title="" href="<?= url("admin/"); ?>">Home</a>
+            <a title="" href="<?= url("admin/contato") ?>">Contato</a>
             <a title="" href="<?= url("teste") ?>">Teste</a>
 
             <?= $this->section("menu"); ?>

@@ -15,11 +15,7 @@ abstract class BaseControllerAdmin
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        // Verificar se o usuário está logado
-        if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_uuid'])) {
-            header("Location: login.php");
-            exit;
-        }
+
 
         // Verificar se a sessão não expirou
         $tempo_limite_sessao = 8 * 60 * 60; // 8 horas em segundos

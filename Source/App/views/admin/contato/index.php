@@ -2,6 +2,7 @@
 <?php $this->layout("_theme"); ?>
 
 <?php $this->start("conteudo"); ?>
+<link rel="stylesheet" href="<?= url("public/assets/css/contato.css") ?>">
 <div class="page-wrapper">
     <div class="main-content">
         <div class="contact-container">
@@ -16,13 +17,13 @@
             </div>
 
             <div class="contact-content">
-                <?php echo $mensagem_status; ?>
+
 
                 <div class="contact-options">
                     <div class="contact-form-container">
                         <h2 class="section-title">Envie sua mensagem</h2>
 
-                        <form method="post" action="">
+                        <form method="post" action="<?= url("admin/contato") ?>">
                             <div class="form-group">
                                 <label for="nome" class="form-label">Nome</label>
                                 <input type="text" id="nome" name="nome" class="form-control" required value="<?php echo isset($_POST['nome']) ? htmlspecialchars($_POST['nome']) : ''; ?>">
@@ -63,17 +64,13 @@
                         <div class="whatsapp-hours">
                             <h4><i class="far fa-clock"></i> Horários de Atendimento</h4>
                             <p>Segunda à Sexta: 08:00 - 18:00</p>
-                            <p>Sábado: 09:00 - 12:00</p>
+                            <p>Sábado: 08:00 - 12:00</p>
                             <p>Domingo e Feriados: Fechado</p>
                         </div>
 
                     </div>
                 </div>
-                <div>
-                    <a href="index.php" class="btn btn-primary">
-                        <i class="fas fa-home me-1"></i> Página Inicial
-                    </a>
-                </div>
+
             </div>
         </div>
     </div>

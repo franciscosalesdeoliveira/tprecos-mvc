@@ -29,10 +29,8 @@ $router->get("/negado", "WebController:negado");
 */
 
 $router->group("admin");
-$router->get("/index", "AdminController:index");
-$router->get("/cadastro", "AdminController:cadastro");
-$router->get("/empresa", "EmpresaController:cadastro_empresa");
-
+$router->get("/", "AdminController:index");
+$router->get("/admin12", "AdminController:index123");
 $router->get("/logout", ("AuthWebController:logout"));
 
 $router->group("admin/grupos");
@@ -79,14 +77,14 @@ $router->get("/", "ConfigController:index");
 
 $router->group("admin/contato");
 $router->get("/", "ContactController:index");
-$router->post("/", "ContactController:save");
+$router->post("/", "ContactController:index");
 
 
 /*
  * Tabela de Preços
  */
 $router->group("admin/tabela-precos");
-$router->get("/", "TabelaPrecosController:index");
+$router->get("/", "TableController:index");
 
 /*
  * ERROR

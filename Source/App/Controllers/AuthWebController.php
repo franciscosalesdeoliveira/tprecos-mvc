@@ -82,7 +82,7 @@ class AuthWebController extends BaseController // ← MUDANÇA: herda de BaseCon
                         }
 
                         // Redirecionar para admin
-                        header("Location: " . url("admin/index"));
+                        header("Location: " . url("admin/"));
                         exit;
                     } else {
                         $error_message = "Usuário ou senha incorretos.";

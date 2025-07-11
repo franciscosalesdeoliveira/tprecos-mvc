@@ -1,0 +1,148 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+.carousel {
+    cursor: pointer;
+}
+
+.carousel-inner {
+    pointer-events: none;
+}
+
+.carousel-item {
+    min-height: 80vh;
+    transition: transform 1s ease-in-out;
+}
+
+.grupo-header {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.table {
+    margin-bottom: 0;
+    font-size: 1.25rem;
+}
+
+th {
+    font-size: 1.5rem;
+}
+
+.preco-destaque {
+    font-weight: bold;
+    color: #ffc107;
+    font-size: 1.3rem;
+}
+
+.footer {
+    padding: 10px;
+    font-size: 1.2rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.preco-novo {
+    animation: highlight 5s;
+}
+
+@keyframes highlight {
+    0% {
+        background-color: rgba(255, 193, 7, 0.8);
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
+
+.tabela-container {
+    position: relative;
+    overflow: hidden;
+    max-height: 65vh;
+    margin-bottom: 20px;
+}
+
+.tabela-scroll {
+    position: relative;
+    width: 100%;
+    transition: top 0.5s ease-in-out;
+}
+
+.tabela-grande {
+    max-height: 95vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.tabela-grande::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tabela-grande::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tabela-grande::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+@media (min-width: 1200px) {
+    .table-responsive {
+        font-size: 1rem;
+    }
+}
+
+.tabela-grande table {
+    margin-bottom: 0;
+}
+
+.tabela-grande th {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
+}
+
+.tabela-grande td {
+    padding: 8px 15px;
+}
+
+/* Estilos para as propagandas */
+.propaganda-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+    text-align: center;
+}
+
+.propaganda-imagem {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.propaganda-titulo {
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px;
+    margin: 0 auto;
+    max-width: 80%;
+    border-radius: 8px;
+}

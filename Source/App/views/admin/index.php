@@ -34,7 +34,7 @@
         <div class="dashboard-content">
             <div class="menu-grid">
                 <div class="stat-card">
-                    <a href="tabela_precos.php" target="_blank" class="menu-card">
+                    <a href="<?= url("admin/tabela-precos") ?>" target="_blank" class="menu-card">
                         <div class="menu-icon">
                             <i class="fas fa-table"></i>
                         </div>
