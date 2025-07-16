@@ -81,8 +81,6 @@ $router->get("/create", "PropagandaController:create");
 $router->post("/", "PropagandaController:save");
 $router->get("/{id}/update", "PropagandaController:update");
 $router->post("/{id}/update", "PropagandaController:update");
-// $router->post("/admin/propagandas/{id}/update", "PropagandaController:update");
-
 $router->post("/{id}/delete", "PropagandaController:destroy");
 
 /*
