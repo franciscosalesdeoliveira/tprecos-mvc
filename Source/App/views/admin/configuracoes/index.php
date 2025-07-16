@@ -18,7 +18,7 @@
                 <!-- <div class="card shadow"> -->
                 <div class="card-body">
                     <!-- Formulário Unificado -->
-                    <form id="formConfiguracoes" action="<?= url("admin/tabela-precos"); ?>" method="GET">
+                    <form id="formConfiguracoes" action="<?= url("admin/tabela-precos"); ?>" method="GET" target="_blank">
                         <!-- Seleção de Grupo -->
                         <div class="mb-3">
                             <label for="grupo" class="form-label fw-bold">Grupo a ser exibido:</label>
@@ -134,8 +134,9 @@
                     </div>
 
                     <!-- Botões adicionais -->
+                    <!-- arrumar a propaganda aqui -->
                     <div class="d-flex justify-content-between mt-2">
-                        <a href="propagandas.php" class="btn btn-outline-success">
+                        <a href="<?= url('admin/propagandas') ?>" class="btn btn-outline-success">
                             <i class="bi bi-image"></i> Gerenciar Propagandas
                         </a>
                     </div>

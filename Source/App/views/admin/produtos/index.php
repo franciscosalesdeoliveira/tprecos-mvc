@@ -167,9 +167,9 @@
 
             if (status === 'todos') {
                 row.style.display = '';
-            } else if (status === 'ativos' && rowStatus === 'ativo') {
+            } else if (status === 'ativos' && rowStatus === 'S') {
                 row.style.display = '';
-            } else if (status === 'inativos' && rowStatus === 'inativo') {
+            } else if (status === 'inativos' && rowStatus === 'N') {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';

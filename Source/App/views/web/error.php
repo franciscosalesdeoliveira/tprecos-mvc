@@ -28,6 +28,8 @@
         echo "<p>Acesso negado!</p>";
     elseif (isset($error) && $error == 401):
         echo "<p>Acesso negado!</p>";
+    elseif (isset($error) && $error == 400):
+        echo "<p>Requisição inválida!</p>";
     else:
         echo "<p>Algo de errado aconteceu!</p>";
     endif;

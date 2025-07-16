@@ -72,6 +72,20 @@ $router->group("admin/configuracoes");
 $router->get("/", "ConfigController:index");
 
 /*
+* Propagandas
+*/
+
+$router->group("admin/propagandas");
+$router->get("/", "PropagandaController:index");
+$router->get("/create", "PropagandaController:create");
+$router->post("/", "PropagandaController:save");
+$router->get("/{id}/update", "PropagandaController:update");
+$router->post("/{id}/update", "PropagandaController:update");
+// $router->post("/admin/propagandas/{id}/update", "PropagandaController:update");
+
+$router->post("/{id}/delete", "PropagandaController:destroy");
+
+/*
 * Contato
 */
 
@@ -84,7 +98,7 @@ $router->post("/", "ContactController:index");
  * Tabela de Preços
  */
 $router->group("admin/tabela-precos");
-$router->get("/", "TableController:index");
+$router->get("/", "TabelaPrecosController:index");
 
 /*
  * ERROR

@@ -15,25 +15,7 @@ class AuthWebController extends BaseController // ← MUDANÇA: herda de BaseCon
 
     public function login($data): void
     {
-        // Criar conexão PDO (já que não herda mais de BaseControllerAdmin)
-        $this->pdo = new PDO("pgsql:host=localhost;dbname=tprecos", "postgres", "admin");
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        // Verificar se a sessão não expirou
-        $tempo_limite_sessao = 8 * 60 * 60; // 8 horas em segundos
-        if (isset($_SESSION['login_time']) && (time() - $_SESSION['login_time'] > $tempo_limite_sessao)) {
-            // Sessão expirada, limpar e redirecionar
-            session_unset();
-            session_destroy();
-            header("Location: " . url("?msg=sessao_expirada"));
-            exit;
-        }
-
-        // Se já está logado, redirecionar para admin
-        if (!empty($_SESSION['user_id'])) {
-            header("Location: " . url("admin/index"));
-            exit;
-        }
+        
 
         $error_message = '';
         $success_message = '';
