@@ -2,7 +2,7 @@
 
 <?php $this->start("conteudo"); ?>
 
-<a href="<?= url("admin/produtos/create"); ?>" class="btn btn-primary mb-3">
+<a class="btn btn-primary m-3" href="<?= url("admin/produtos/create"); ?>">
     <i class="fas fa-plus"></i> Adicionar
 </a>
 <div class="container-fluid py-4">
@@ -36,28 +36,10 @@
 
 
     <div class="row">
-        <!-- Coluna dos Links Úteis
-        <div class="col-lg-3 mb-4">
-            <div class="links-section">
-                <h4 class="mb-3 text-center">Links Úteis</h4>
-                <div class="d-grid gap-2">
-                    <a href="index.php" class="btn btn-primary">
-                        <i class="fas fa-home me-1"></i> Página Inicial
-                    </a>
-                    <a href="cadastro_grupos.php" class="btn btn-primary">
-                        <i class="fas fa-layer-group me-1"></i> Cadastro de Grupos
-                    </a>
-                    <a href="excel.php" class="btn btn-primary">
-                        <i class="fas fa-file-excel me-1"></i> Importar CSV
-                    </a>
-                    <a href="configuracoes.php" class="btn btn-primary">
-                        <i class="fas fa-cogs me-1"></i> Configurações
-                    </a>
-                </div>
-            </div>
-        </div> -->
 
+    
         <!-- Coluna da Tabela -->
+         
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">

@@ -86,97 +86,55 @@ class Propagandas extends DataLayer
     }
 
 
-public function updatePropaganda($id, $dados, $atualizarImagem = false)
-{
-    try {
-        // CORREÇÃO: Normalizar o campo "ativo" considerando diferentes formatos
-        $ativo = 'N'; // Padrão
-        
-        if (isset($dados['ativo'])) {
-            $valorAtivo = $dados['ativo'];
-            // Aceitar 'S', '1', 1, true, 'true' como ativo
-            if ($valorAtivo === 'S' || $valorAtivo === '1' || $valorAtivo === 1 || $valorAtivo === true || $valorAtivo === 'true') {
-                $ativo = 'S';
-            }
-        }
+    public function updatePropaganda($id, $dados, $atualizarImagem = false)
+    {
+        try {
+            // CORREÇÃO: Normalizar o campo "ativo" considerando diferentes formatos
+            // $ativo = 'N'; // Padrão
 
-        if ($atualizarImagem) {
-            $stmt = $this->pdo->prepare("UPDATE propagandas SET 
+            if (isset($dados['ativo'])) {
+                $valorAtivo = $dados['ativo'];
+                // Aceitar 'S', '1', 1, true, 'true' como ativo
+                if ($valorAtivo === 'S' || $valorAtivo === '1' || $valorAtivo === 1 || $valorAtivo === true || $valorAtivo === 'true') {
+                    $ativo = 'S';
+                }
+            }
+
+            if ($atualizarImagem) {
+                $stmt = $this->pdo->prepare("UPDATE propagandas SET 
             titulo = ?, descricao = ?, imagem = ?, tipo_imagem = ?, ativo = ?, ordem = ?, updated_at = CURRENT_TIMESTAMP 
             WHERE id = ?");
-            $stmt->execute([
-                $dados['titulo'],
-                $dados['descricao'],
-                $dados['imagem'],
-                $dados['tipo_imagem'],
-                $ativo,
-                $dados['ordem'],
-                $id
-            ]);
-        } else {
-            $stmt = $this->pdo->prepare("UPDATE propagandas SET 
+                $stmt->execute([
+                    $dados['titulo'],
+                    $dados['descricao'],
+                    $dados['imagem'],
+                    $dados['tipo_imagem'],
+                    $ativo,
+                    $dados['ordem'],
+                    $id
+                ]);
+            } else {
+                $stmt = $this->pdo->prepare("UPDATE propagandas SET 
             titulo = ?, descricao = ?, ativo = ?, ordem = ?, updated_at = CURRENT_TIMESTAMP 
             WHERE id = ?");
-            $stmt->execute([
-                $dados['titulo'],
-                $dados['descricao'],
-                $ativo,
-                $dados['ordem'],
-                $id
-            ]);
-        }
-
-        return true;
-    } catch (PDOException $e) {
-        throw new \Exception("Erro ao atualizar propaganda: " . $e->getMessage());
-    }
-}
-
-
-    public function deletePropaganda($id)
-    {
-        try {
-            // Buscar informações da imagem antes de excluir
-            $propaganda = $this->getPropagandaById($id);
-
-            // Excluir registro do banco
-            $stmt = $this->pdo->prepare("DELETE FROM propagandas WHERE id = ?");
-            $stmt->execute([$id]);
-
-            // Remover arquivo local se existir e for do tipo local
-            if (
-                $propaganda && ($propaganda['tipo_imagem'] ?? 'local') == 'local' &&
-                $propaganda['imagem'] && file_exists($this->uploadDir . $propaganda['imagem'])
-            ) {
-                unlink($this->uploadDir . $propaganda['imagem']);
+                $stmt->execute([
+                    $dados['titulo'],
+                    $dados['descricao'],
+                    $ativo,
+                    $dados['ordem'],
+                    $id
+                ]);
             }
 
             return true;
         } catch (PDOException $e) {
-            throw new \Exception("Erro ao excluir propaganda: " . $e->getMessage());
+            throw new \Exception("Erro ao atualizar propaganda: " . $e->getMessage());
         }
     }
 
-    public function toggleStatus($id)
-    {
-        try {
-            // Buscar status atual
-            $stmt = $this->pdo->prepare("SELECT ativo FROM propagandas WHERE id = ?");
-            $stmt->execute([$id]);
-            $statusAtual = $stmt->fetchColumn();
 
-            // Inverter status
-            $novoStatus = $statusAtual ? 0 : 1;
 
-            // Atualizar no banco
-            $stmt = $this->pdo->prepare("UPDATE propagandas SET ativo = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?");
-            $stmt->execute([$novoStatus, $id]);
 
-            return true;
-        } catch (PDOException $e) {
-            throw new \Exception("Erro ao atualizar status: " . $e->getMessage());
-        }
-    }
 
     public function processarUpload($arquivo)
     {
@@ -186,7 +144,7 @@ public function updatePropaganda($id, $dados, $atualizarImagem = false)
 
         // Verificar extensão
         $extensao = strtolower(pathinfo($arquivo['name'], PATHINFO_EXTENSION));
-        $extensoesPermitidas = ['jpg', 'jpeg', 'png', 'gif'];
+        $extensoesPermitidas = ['jpg', 'jpeg', 'png'];
 
         if (!in_array($extensao, $extensoesPermitidas)) {
             throw new \Exception("Formato de arquivo não permitido. Use: " . implode(', ', $extensoesPermitidas));

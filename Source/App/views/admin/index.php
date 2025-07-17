@@ -105,6 +105,18 @@
                     </a>
                 </div>
 
+                <div class="stat-card">
+                    <a href="<?= url("admin/propagandas") ?>" class="menu-card">
+                        <div class="menu-icon">
+                            <i class="fa-solid fa-rectangle-ad"></i>
+                        </div>
+                        <div class="menu-content">
+                            <h3 class="menu-title">Gerenciar Propagandas</h3>
+                            <p class="menu-description">Gerencie as propagandas do sistema</p>
+                        </div>
+                    </a>
+                </div>
+
             </div>
         </div>
 </body>

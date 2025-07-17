@@ -26,6 +26,7 @@ class ComposerStaticInita651c1b8c9b00165dda472d2a97a5490
         'C' => 
         array (
             'CoffeeCode\\Router\\' => 18,
+            'CoffeeCode\\Paginator\\' => 21,
             'CoffeeCode\\DataLayer\\' => 21,
         ),
     );
@@ -47,6 +48,10 @@ class ComposerStaticInita651c1b8c9b00165dda472d2a97a5490
         array (
             0 => __DIR__ . '/..' . '/coffeecode/router/src',
         ),
+        'CoffeeCode\\Paginator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/coffeecode/paginator/src',
+        ),
         'CoffeeCode\\DataLayer\\' => 
         array (
             0 => __DIR__ . '/..' . '/coffeecode/datalayer/src',
@@ -54,55 +59,7 @@ class ComposerStaticInita651c1b8c9b00165dda472d2a97a5490
     );
 
     public static $classMap = array (
-        'CoffeeCode\\DataLayer\\Connect' => __DIR__ . '/..' . '/coffeecode/datalayer/src/Connect.php',
-        'CoffeeCode\\DataLayer\\CrudTrait' => __DIR__ . '/..' . '/coffeecode/datalayer/src/CrudTrait.php',
-        'CoffeeCode\\DataLayer\\DataLayer' => __DIR__ . '/..' . '/coffeecode/datalayer/src/DataLayer.php',
-        'CoffeeCode\\Router\\Dispatch' => __DIR__ . '/..' . '/coffeecode/router/src/Dispatch.php',
-        'CoffeeCode\\Router\\Router' => __DIR__ . '/..' . '/coffeecode/router/src/Router.php',
-        'CoffeeCode\\Router\\RouterTrait' => __DIR__ . '/..' . '/coffeecode/router/src/RouterTrait.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'League\\Plates\\Engine' => __DIR__ . '/..' . '/league/plates/src/Engine.php',
-        'League\\Plates\\Exception\\TemplateNotFound' => __DIR__ . '/..' . '/league/plates/src/Exception/TemplateNotFound.php',
-        'League\\Plates\\Extension\\Asset' => __DIR__ . '/..' . '/league/plates/src/Extension/Asset.php',
-        'League\\Plates\\Extension\\ExtensionInterface' => __DIR__ . '/..' . '/league/plates/src/Extension/ExtensionInterface.php',
-        'League\\Plates\\Extension\\URI' => __DIR__ . '/..' . '/league/plates/src/Extension/URI.php',
-        'League\\Plates\\Template\\Data' => __DIR__ . '/..' . '/league/plates/src/Template/Data.php',
-        'League\\Plates\\Template\\Directory' => __DIR__ . '/..' . '/league/plates/src/Template/Directory.php',
-        'League\\Plates\\Template\\FileExtension' => __DIR__ . '/..' . '/league/plates/src/Template/FileExtension.php',
-        'League\\Plates\\Template\\Folder' => __DIR__ . '/..' . '/league/plates/src/Template/Folder.php',
-        'League\\Plates\\Template\\Folders' => __DIR__ . '/..' . '/league/plates/src/Template/Folders.php',
-        'League\\Plates\\Template\\Func' => __DIR__ . '/..' . '/league/plates/src/Template/Func.php',
-        'League\\Plates\\Template\\Functions' => __DIR__ . '/..' . '/league/plates/src/Template/Functions.php',
-        'League\\Plates\\Template\\Name' => __DIR__ . '/..' . '/league/plates/src/Template/Name.php',
-        'League\\Plates\\Template\\ResolveTemplatePath' => __DIR__ . '/..' . '/league/plates/src/Template/ResolveTemplatePath.php',
-        'League\\Plates\\Template\\ResolveTemplatePath\\NameAndFolderResolveTemplatePath' => __DIR__ . '/..' . '/league/plates/src/Template/ResolveTemplatePath/NameAndFolderResolveTemplatePath.php',
-        'League\\Plates\\Template\\ResolveTemplatePath\\ThemeResolveTemplatePath' => __DIR__ . '/..' . '/league/plates/src/Template/ResolveTemplatePath/ThemeResolveTemplatePath.php',
-        'League\\Plates\\Template\\Template' => __DIR__ . '/..' . '/league/plates/src/Template/Template.php',
-        'League\\Plates\\Template\\Theme' => __DIR__ . '/..' . '/league/plates/src/Template/Theme.php',
-        'PHPMailer\\PHPMailer\\DSNConfigurator' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/DSNConfigurator.php',
-        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
-        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
-        'PHPMailer\\PHPMailer\\OAuthTokenProvider' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuthTokenProvider.php',
-        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
-        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
-        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
-        'Source\\App\\Controllers\\AdminController' => __DIR__ . '/../..' . '/Source/App/Controllers/AdminController.php',
-        'Source\\App\\Controllers\\AuthWebController' => __DIR__ . '/../..' . '/Source/App/Controllers/AuthWebController.php',
-        'Source\\App\\Controllers\\BaseController' => __DIR__ . '/../..' . '/Source/App/Controllers/BaseController.php',
-        'Source\\App\\Controllers\\BaseControllerAdmin' => __DIR__ . '/../..' . '/Source/App/Controllers/BaseControllerAdmin.php',
-        'Source\\App\\Controllers\\ConfigController' => __DIR__ . '/../..' . '/Source/App/Controllers/ConfigController.php',
-        'Source\\App\\Controllers\\ContactController' => __DIR__ . '/../..' . '/Source/App/Controllers/ContactController.php',
-        'Source\\App\\Controllers\\GroupController' => __DIR__ . '/../..' . '/Source/App/Controllers/GroupController.php',
-        'Source\\App\\Controllers\\ImportController' => __DIR__ . '/../..' . '/Source/App/Controllers/ImportController.php',
-        'Source\\App\\Controllers\\ProductController' => __DIR__ . '/../..' . '/Source/App/Controllers/ProductController.php',
-        'Source\\App\\Controllers\\PropagandaController' => __DIR__ . '/../..' . '/Source/App/Controllers/PropagandaController.php',
-        'Source\\App\\Controllers\\TabelaPrecosController' => __DIR__ . '/../..' . '/Source/App/Controllers/TabelaPrecosController.php',
-        'Source\\App\\Controllers\\WebController' => __DIR__ . '/../..' . '/Source/App/Controllers/WebController.php',
-        'Source\\App\\Models\\Contato' => __DIR__ . '/../..' . '/Source/App/Models/Contato.php',
-        'Source\\App\\Models\\Grupos' => __DIR__ . '/../..' . '/Source/App/Models/Grupos.php',
-        'Source\\App\\Models\\GruposSQL' => __DIR__ . '/../..' . '/Source/App/Models/GruposSQL.php',
-        'Source\\App\\Models\\Produtos' => __DIR__ . '/../..' . '/Source/App/Models/Produtos.php',
-        'Source\\App\\Models\\Propagandas' => __DIR__ . '/../..' . '/Source/App/Models/Propagandas.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

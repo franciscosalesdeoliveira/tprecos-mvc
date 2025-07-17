@@ -10,5 +10,6 @@ return array(
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'League\\Plates\\' => array($vendorDir . '/league/plates/src'),
     'CoffeeCode\\Router\\' => array($vendorDir . '/coffeecode/router/src'),
+    'CoffeeCode\\Paginator\\' => array($vendorDir . '/coffeecode/paginator/src'),
     'CoffeeCode\\DataLayer\\' => array($vendorDir . '/coffeecode/datalayer/src'),
 );

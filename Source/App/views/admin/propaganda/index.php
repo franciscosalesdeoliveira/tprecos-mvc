@@ -10,7 +10,7 @@ $this->layout("_theme");
 <a href="<?= url("admin/propagandas/create"); ?>" class="btn btn-primary mb-3">
     <i class="fas fa-plus"></i> Adicionar
 </a>
-<div class="container mt-4">
+<div class="container">
     <h1 class="text-center mb-4" style="color: white;"><?= $titulo ?></h1>
 
     <?php if (isset($mensagem)): ?>
@@ -36,18 +36,18 @@ $this->layout("_theme");
                         <thead>
                             <tr>
                                 <th style="width: 80px;">Ordem</th>
-                                <th style="width: 100px;">Imagem</th>
+                                <th class="text-center" style="width: 100px;">Imagem</th>
                                 <th>Título</th>
-                                <th style="width: 100px;">Tipo</th>
-                                <th style="width: 100px;">Status</th>
-                                <th style="width: 150px;">Ações</th>
+                                <th class="text-center" style="width: 100px;">Tipo</th>
+                                <th class="text-center" style="width: 100px;">Status</th>
+                                <th class="text-center" style="width: 150px;">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($propagandas as $propaganda): ?>
                                 <tr>
-                                    <td class="text-center"><?= $propaganda['ordem'] ?></td>
-                                    <td>
+                                    <td><?= $propaganda['ordem'] ?></td>
+                                    <td class="text-center">
                                         <?php
                                         // Usar a classe helper para renderizar a imagem
                                         $debugMode = isset($_GET['debug']) && $_GET['debug'] == '1';
@@ -56,18 +56,18 @@ $this->layout("_theme");
                                         ]);
                                         ?>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <strong><?= htmlspecialchars($propaganda['titulo']) ?></strong>
                                         <?php if (!empty($propaganda['descricao'])): ?>
                                             <br><small class="text-muted"><?= htmlspecialchars($propaganda['descricao']) ?></small>
                                         <?php endif; ?>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <span class="badge bg-info">
                                             <?= ($propaganda['tipo_imagem'] ?? 'local') == 'url' ? 'URL Externa' : 'Arquivo Local' ?>
                                         </span>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <?php
                                         $ativo = ($propaganda['ativo'] === 'S' || $propaganda['ativo'] === '1' || $propaganda['ativo'] === 1 || $propaganda['ativo'] === true);
                                         ?>
@@ -78,47 +78,45 @@ $this->layout("_theme");
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <div class="btn-group btn-group-sm">
-                                            <a href="?alterarstatus=<?= $propaganda['id'] ?>" class="btn btn-outline-<?= $ativo ? 'secondary' : 'success' ?>" title="<?= $ativo ? 'Desativar' : 'Ativar' ?>">
-                                                <i class="bi bi-<?= $ativo ? 'toggle-on' : 'toggle-off' ?>"></i>
-                                            </a>
-                                            <a href="<?= url("admin/propagandas/{$propaganda['id']}/update") ?>" class="btn btn-outline-primary" title="Editar">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
+                                        <div class="text-center">
+                                            <div class="d-flex justify-content-center">
+                                                <a title="Editar" class="btn btn-primary btn-action" href="<?= url("admin/propagandas/{$propaganda['id']}/edit") ?>" class="btn btn-outline-primary" title="Editar">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <form id="del<?= $propaganda['id'] ?>"
+                                                    action="<?= url("admin/propagandas/{$propaganda['id']}/delete"); ?>"
+                                                    method="POST"
+                                                    style="display:inline;">
 
-                                            <a href="?excluir=<?= $propaganda['id'] ?>" class="btn btn-outline-danger"
-                                                onclick="return confirm('Tem certeza que deseja excluir esta propaganda?')" title="Excluir">
-                                                <i class="bi bi-trash"></i>
-                                            </a>
-                                        </div>
+                                                    <!-- Botão de Excluir -->
+                                                    <button type="button" class="btn btn-danger btn-action"
+                                                        onclick="if(confirm('Tem certeza que deseja excluir esta propaganda?')) { document.getElementById('del<?= $propaganda['id'] ?>').submit(); }">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                     </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            <?php endif; ?>
-        </div>
-    </div>
 
-    <!-- Botões de navegação -->
-    <div class="mt-4 mb-5 text-center">
-        <a href="index.php" class="btn btn-outline-secondary">
-            <i class="bi bi-house"></i> Voltar para Início
-        </a>
-        <a href="configuracoes.php" class="btn btn-outline-primary">
-            <i class="bi bi-gear"></i> Configurações da Tabela
-        </a>
-        <?php if (isset($_GET['debug'])): ?>
-            <a href="?" class="btn btn-outline-warning">
-                <i class="bi bi-bug"></i> Desativar Debug
-            </a>
-        <?php else: ?>
-            <a href="?debug=1" class="btn btn-outline-info">
-                <i class="bi bi-bug"></i> Modo Debug
-            </a>
-        <?php endif; ?>
+                </div>
+                </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+            </table>
+        </div>
+    <?php endif; ?>
     </div>
+</div>
+
+<!-- Botões de navegação -->
+<div class="mt-4 mb-5 text-center">
+    <a href="<?= url('admin') ?>" class="btn btn-outline-secondary">
+        <i class="bi bi-house"></i> Voltar para Início
+    </a>
+    <a href="<?= url('admin/configuracoes') ?>" class="btn btn-outline-primary">
+        <i class="bi bi-gear"></i> Configurações da Tabela
+    </a>
+</div>
 </div>
 
 <script>

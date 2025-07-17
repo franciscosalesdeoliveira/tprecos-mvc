@@ -3,7 +3,7 @@
 <?php $this->start("conteudo"); ?>
 
 
-<a href="<?= url("admin/grupos/create"); ?>" class="btn btn-primary mb-3">
+<a class="btn btn-primary m-3" href="<?= url("admin/grupos/create"); ?>">
   <i class="fas fa-plus"></i> Adicionar
 </a>
 <div class="table-responsive">

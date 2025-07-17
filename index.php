@@ -79,8 +79,7 @@ $router->group("admin/propagandas");
 $router->get("/", "PropagandaController:index");
 $router->get("/create", "PropagandaController:create");
 $router->post("/", "PropagandaController:save");
-$router->get("/{id}/update", "PropagandaController:update");
-$router->post("/{id}/update", "PropagandaController:update");
+$router->get("/{id}/edit", "PropagandaController:edit");
 $router->post("/{id}/delete", "PropagandaController:destroy");
 
 /*

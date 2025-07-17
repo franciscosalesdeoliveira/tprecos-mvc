@@ -2,6 +2,7 @@
 
 namespace Source\App\Controllers;
 
+use Exception;
 use PDO;
 use PDOException;
 use Source\App\Models\Propagandas;
@@ -27,79 +28,12 @@ class PropagandaController extends BaseControllerAdmin
         $tipoMensagem = null;
         $propagandaEdicao = null;
 
-        // Capturar mensagens da URL (vindas de redirecionamentos)
-        if (isset($_GET['success'])) {
-            $mensagem = $_GET['success'];
-            $tipoMensagem = 'success';
-        } elseif (isset($_GET['error'])) {
-            $mensagem = $_GET['error'];
-            $tipoMensagem = 'danger';
-        }
 
-        // Processar exclusão
-        if (isset($_GET['excluir']) && is_numeric($_GET['excluir'])) {
-            try {
-                $this->propagandaModel->deletePropaganda($_GET['excluir']);
-                $mensagem = "Propaganda excluída com sucesso!";
-                $tipoMensagem = "success";
-            } catch (\Exception $e) {
-                $mensagem = $e->getMessage();
-                $tipoMensagem = "danger";
-            }
-        }
-
-        // Processar alteração de status
-        if (isset($_GET['alterarstatus']) && is_numeric($_GET['alterarstatus'])) {
-            try {
-                $this->propagandaModel->toggleStatus($_GET['alterarstatus']);
-                $mensagem = "Status da propaganda atualizado com sucesso!";
-                $tipoMensagem = "success";
-            } catch (\Exception $e) {
-                $mensagem = $e->getMessage();
-                $tipoMensagem = "danger";
-            }
-        }
-
-        // Processar formulário (criar/editar)
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            try {
-                $dados = $this->processarDadosFormulario();
-
-                if (isset($_POST['id']) && !empty($_POST['id'])) {
-                    // Editar propaganda existente
-                    $this->update([
-                        'id' => $_POST['id'],
-                        'dados' => $dados
-                    ]);
-
-                    $mensagem = "Propaganda atualizada com sucesso!";
-                } else {
-                    // Criar nova propaganda
-                    $this->criarPropaganda($dados);
-                    $mensagem = "Nova propaganda cadastrada com sucesso!";
-                }
-
-                $tipoMensagem = "success";
-            } catch (\Exception $e) {
-                $mensagem = $e->getMessage();
-                $tipoMensagem = "danger";
-            }
-        }
-
-        // Buscar propaganda para edição
-        if (isset($_GET['editar']) && is_numeric($_GET['editar'])) {
-            try {
-                $propagandaEdicao = $this->propagandaModel->getPropagandaById($_GET['editar']);
-            } catch (\Exception $e) {
-                $mensagem = $e->getMessage();
-                $tipoMensagem = "danger";
-            }
-        }
 
         // Buscar todas as propagandas
         try {
             $propagandas = $this->propagandaModel->getAllPropagandas();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $mensagem = $e->getMessage();
             $tipoMensagem = "danger";
             $propagandas = [];
@@ -107,15 +41,6 @@ class PropagandaController extends BaseControllerAdmin
 
         // Preparar dados para a view
         $uploadDir = 'uploads/propagandas/';
-
-        // Debug: verificar dados antes da renderização
-        error_log("Dados para view: " . print_r([
-            'titulo' => 'Gerenciar Propagandas',
-            'mensagem' => $mensagem,
-            'tipoMensagem' => $tipoMensagem,
-            'propagandas' => count($propagandas ?? []),
-            'propagandaEdicao' => $propagandaEdicao ? 'sim' : 'não'
-        ], true));
 
         // Renderizar view
         try {
@@ -130,10 +55,41 @@ class PropagandaController extends BaseControllerAdmin
                 'getImagemUrl' => [$this->propagandaModel, 'getImagemUrl']
             ]);
             error_log("View renderizada com sucesso");
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             error_log("Erro ao renderizar view: " . $e->getMessage());
             echo "Erro ao carregar a página: " . $e->getMessage();
         }
+    }
+
+    public function edit($data): void
+    {
+        // Verifica se o ID foi passado e é válido
+        if (!isset($data['id']) || empty($data['id']) || !is_numeric($data['id'])) {
+            $_SESSION["messageError"] = "ID da propaganda não informado ou inválido.";
+            header('Location: ' . url("admin/propagandas"));
+            return;
+        }
+
+        // Buscar propaganda pelo ID
+        $sql = "SELECT * FROM propagandas WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', (int)$data['id']);
+        $stmt->execute();
+        $propaganda = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Verifica se a propaganda existe
+        if (!$propaganda) {
+            $_SESSION["messageError"] = "Propaganda não encontrada.";
+            header('Location: ' . url("admin/propagandas"));
+            return;
+        }
+
+        echo $this->view->render("propaganda/form", [
+            "title" => "Editar Propaganda",
+            "crumb" => "<a href='" . url("admin/propagandas/{$data['id']}/edit") . "'>Atualizar Propaganda</a>",
+            "dataDB" => $propaganda,
+            "erros" => []
+        ]);
     }
 
     private function processarDadosFormulario()
@@ -158,7 +114,7 @@ class PropagandaController extends BaseControllerAdmin
                 $dados['imagem'] = $this->propagandaModel->processarUpload($_FILES['imagem']);
             } elseif (!isset($_POST['id'])) {
                 // Se for nova propaganda e não tem imagem
-                throw new \Exception("É necessário enviar uma imagem para a propaganda.");
+                throw new Exception("É necessário enviar uma imagem para a propaganda.");
             }
         }
 
@@ -195,9 +151,9 @@ class PropagandaController extends BaseControllerAdmin
                 $propagandaAntiga &&
                 ($propagandaAntiga['tipo_imagem'] ?? 'local') === 'local' &&
                 $propagandaAntiga['imagem'] &&
-                file_exists('public/uploads/propagandas/' . $propagandaAntiga['imagem'])
+                file_exists('uploads/propagandas/' . $propagandaAntiga['imagem'])
             ) {
-                unlink('public/uploads/propagandas/' . $propagandaAntiga['imagem']);
+                unlink('uploads/propagandas/' . $propagandaAntiga['imagem']);
             }
             $atualizarImagem = true;
         }
@@ -225,7 +181,7 @@ class PropagandaController extends BaseControllerAdmin
         // Método para API ou uso externo
         try {
             return $this->propagandaModel->getPropagandasAtivas();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return ['error' => $e->getMessage()];
         }
     }
@@ -261,12 +217,17 @@ class PropagandaController extends BaseControllerAdmin
                     $imagem = "uploads/propagandas/" . $nomeFinal;
                 }
             }
+            // Processa imagem se tipo_imagem for URL
+            if (($data["tipo_imagem"] ?? '') === 'url' && !empty($data["url_imagem"])) {
+                $imagem = trim($data["url_imagem"]);
+            }
+
 
             // Verifica se é edição
             if (isset($data["id"]) && !empty($data["id"])) {
                 $dataDB = $this->propagandaModel->getPropagandaById($data["id"]);
                 if (!$dataDB) {
-                    throw new \Exception('Registro não encontrado para atualização.');
+                    throw new Exception('Registro não encontrado para atualização.');
                 }
 
                 // Atualiza apenas se nova imagem foi enviada
@@ -304,22 +265,48 @@ class PropagandaController extends BaseControllerAdmin
             // Redirecionar para a página de listagem com mensagem de sucesso
             header("Location: " . url("admin/propagandas") . "?success=" . urlencode($mensagem));
             exit();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Em caso de erro, redirecionar com mensagem de erro
             header("Location: " . url("admin/propagandas") . "?error=" . urlencode($e->getMessage()));
             exit();
         }
     }
 
-    public function destroy($id)
+    public function destroy($data)
     {
         try {
-            $this->propagandaModel->deletePropaganda($id);
-            header("Location: " . url("admin/propagandas") . "?success=" . urlencode("Propaganda excluída com sucesso!"));
-            exit();
-        } catch (\Exception $e) {
-            header("Location: " . url("admin/propagandas") . "?error=" . urlencode($e->getMessage()));
-            exit();
+            // Verifica se o ID foi passado e é válido
+            if (!isset($data['id']) || empty($data['id']) || !is_numeric($data['id'])) {
+                $_SESSION["messageError"] = "ID da propaganda não informado ou inválido.";
+                header('Location: ' . url("admin/propagandas"));
+                return;
+            }
+
+            // Verificar se a propaganda existe
+            $sql = "SELECT id FROM propagandas WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':id', (int)$data['id']);
+            $stmt->execute();
+            $propaganda = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$propaganda) {
+                $_SESSION["messageError"] = "Propaganda não encontrada.";
+            } else {
+                // Excluir a propaganda
+                $sql = "DELETE FROM propagandas WHERE id = :id";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindValue(':id', (int)$data['id']);
+
+                if ($stmt->execute()) {
+                    $_SESSION["messageSuccess"] = "Propaganda excluída com sucesso!";
+                } else {
+                    $_SESSION["messageError"] = "Erro ao excluir a propaganda.";
+                }
+            }
+        } catch (Exception $exception) {
+            $_SESSION["messageError"] = "Erro ao processar requisição: " . $exception->getMessage();
         }
+
+        header('Location: ' . url("admin/propagandas"));
     }
 }

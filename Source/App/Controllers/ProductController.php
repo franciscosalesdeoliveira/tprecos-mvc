@@ -2,6 +2,7 @@
 
 namespace Source\App\Controllers;
 
+use CoffeeCode\Paginator\Paginator;
 use Exception;
 use PDO;
 use Source\App\Models\Produtos;
@@ -202,26 +203,6 @@ class ProductController extends BaseControllerAdmin
             $this->retorno($data);
     }
 
-    // private function showFormWithErrors($data, $erros)
-    // {
-    //     // Buscar grupos para o formulário
-    //     $sql = "SELECT id, nome FROM grupos ORDER BY nome";
-    //     $stmt = $this->pdo->query($sql);
-    //     $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    //     echo $this->view->render("produtos/form", [
-    //         "title" => "Administração - Produtos",
-    //         "crumb" => isset($data['id']) ? "<a href='" . url("admin/produtos/" . $data['id']) . "'>Atualizar Produto</a>" : "<a href='" . url("admin/produtos/create") . "'>Adicionar Produto</a>",
-    //         "grupos" => $grupos,
-    //         "nome" => $data['nome'] ?? "",
-    //         "descricao" => $data['descricao'] ?? "",
-    //         "grupo_id" => $data['grupo_id'] ?? "",
-    //         "preco" => $data['preco'] ?? "",
-    //         "ativo" => isset($data['ativo']) ? 1 : 0,
-    //         "produto_id" => $data['id'] ?? null,
-    //         "erros" => $erros
-    //     ]);
-    // }
 
     private function retorno(array $data)
     {

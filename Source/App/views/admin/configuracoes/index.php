@@ -135,11 +135,7 @@
 
                     <!-- Botões adicionais -->
                     <!-- arrumar a propaganda aqui -->
-                    <div class="d-flex justify-content-between mt-2">
-                        <a href="<?= url('admin/propagandas') ?>" class="btn btn-outline-success">
-                            <i class="bi bi-image"></i> Gerenciar Propagandas
-                        </a>
-                    </div>
+                  
                 </div>
                 <!-- </div> -->
             </div>

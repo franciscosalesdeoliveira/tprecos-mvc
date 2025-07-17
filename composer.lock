@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a44742cb876d52ef68f77a1898c78e2d",
+    "content-hash": "b0ae7480cca730127b38507e0e8c45f8",
     "packages": [
         {
             "name": "coffeecode/datalayer",
@@ -58,6 +58,54 @@
                 "source": "https://github.com/robsonvleite/datalayer/tree/1.1.8"
             },
             "time": "2021-03-21T14:00:57+00:00"
+        },
+        {
+            "name": "coffeecode/paginator",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robsonvleite/paginator.git",
+                "reference": "719d7520a9e065d2ba4ac9a8b6ef26022c535b15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robsonvleite/paginator/zipball/719d7520a9e065d2ba4ac9a8b6ef26022c535b15",
+                "reference": "719d7520a9e065d2ba4ac9a8b6ef26022c535b15",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CoffeeCode\\Paginator\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robson V. Leite",
+                    "email": "cursos@upinside.com.br",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Paginator is simple and is ready to generate results navigation in your application",
+            "homepage": "http://www.upinside.com.br",
+            "keywords": [
+                "Coffeecode",
+                "pagination",
+                "paginator",
+                "upinside"
+            ],
+            "support": {
+                "issues": "https://github.com/robsonvleite/paginator/issues",
+                "source": "https://github.com/robsonvleite/paginator/tree/2.0.1"
+            },
+            "time": "2022-04-07T00:53:02+00:00"
         },
         {
             "name": "coffeecode/router",
