@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabela de Preços - Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="<?= url("public/assets/css/index.css") ?>">
+    <!-- <link rel="stylesheet" href="<?= url("public/assets/css/index.css") ?>"> -->
+    <link rel="stylesheet" href="<?= url("public/assets/css/style.css") ?>">
 </head>
 
 <body>
@@ -21,18 +22,13 @@
             </div>
             <div class="dashboard-user-info">
                 <p>Bem-vindo, <span style="color:rgb(3, 52, 109); font-weight: bold;"><?php echo htmlspecialchars($_SESSION['user_name']); ?></span></p>
-                <hr>
+
             </div>
         </div>
 
-        <div>
-            <a class="btn btn-primary btn-sm position-absolute bottom-30 end-0 m-3" href="<?= url("admin/logout") ?>">
-                <i class="fa-solid fa-right-from-bracket me-2 btn btn-primary"></i>Sair
-            </a>
-        </div>
+        <div class="dashboard-content ">
+            <div class="menu-grid ">
 
-        <div class="dashboard-content">
-            <div class="menu-grid">
                 <div class="stat-card">
                     <a href="<?= url("admin/tabela-precos") ?>" target="_blank" class="menu-card">
                         <div class="menu-icon">
@@ -113,6 +109,18 @@
                         <div class="menu-content">
                             <h3 class="menu-title">Gerenciar Propagandas</h3>
                             <p class="menu-description">Gerencie as propagandas do sistema</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="stat-card-logout">
+                    <a href="<?= url("admin/logout") ?>" class="menu-card">
+                        <div class="menu-icon-logout">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
+                        <div class="menu-content">
+                            <h3 class="menu-title">Sair</h3>
+                            <p class="menu-description">Sair do sistema <br> com segurança <br> </p>
                         </div>
                     </a>
                 </div>

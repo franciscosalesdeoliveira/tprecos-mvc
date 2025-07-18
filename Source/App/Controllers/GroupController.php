@@ -18,9 +18,9 @@ class GroupController extends BaseControllerAdmin
 
     public function index()
     {
-
+        $title = "Listagem de Grupos";
         echo $this->view->render("grupos/index", [
-            "title" => "Administra&ccedil;&atilde;o - ProjetoSecao",
+            "title" => $title,
             "dataDB" => GruposSQL::categoriesTreeOrder(),
         ]);
     }
@@ -28,9 +28,9 @@ class GroupController extends BaseControllerAdmin
 
     public function create(): void
     {
+        $title = "Cadastro de Grupos";
         echo $this->view->render("grupos/form", [
-
-            "title" => "Administra&ccedil;&atilde;o - ProjetoSecao",
+            "title" => $title,
             "crumb" => "<a href='" . url("admin/grupos/create") . "'>Adicionar</a>",
             "projetos" => (new Grupos())->find()->fetch(true),
             // "secoes" => (new Grupos())->find('id is null')->fetch(true),
@@ -40,7 +40,7 @@ class GroupController extends BaseControllerAdmin
 
     public function open($data): void
     {
-        //UPDATE 
+        $title = "Atualização de Grupos";
         // Verifica se o ID foi passado
         if (!isset($data['id']) || empty($data['id']) || !is_numeric($data['id'])) {
             $_SESSION["messageError"] = "ID do grupo não informado ou inválido.";
@@ -57,7 +57,7 @@ class GroupController extends BaseControllerAdmin
             return;
         }
         echo $this->view->render("grupos/form", [
-            "title" => "Administra&ccedil;&atilde;o - ProjetoSecao",
+            "title" => $title,
             "crumb" => "<a href='" . url("admin/grupos/" . $data['id']) . "'>Atualizar</a>",
             "projetos" => (new Grupos())->find()->fetch(true),
             "dataDB" => $dataDB
@@ -110,7 +110,7 @@ class GroupController extends BaseControllerAdmin
 
     public function destroy($data): void
     {
-       
+
         $dataDB = (new Grupos())->findById($data['id']);
 
         if ($dataDB == null) {

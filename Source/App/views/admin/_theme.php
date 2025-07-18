@@ -4,26 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php if (isset($title) && !empty($title)):
-        $title = strip_tags($title);
-    else:
-        $title = "PHPTips";
-    endif;
-
-    ?>
-    <title><?= $title ?></title>
-
+    <title><?= $title ?? 'Erro'; ?></title>
     <link rel="stylesheet" href="<?= url("public/assets/css/style.css") ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
-
 </head>
 
 <body>
 
     <nav class="navbar main_nav navbar-expand-lg">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand  " href="<?= url("admin/") ?>">Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -40,6 +30,10 @@
                         <li class="nav-item">
                             <a class="nav-link" title="" href="<?= url("teste") ?>">Teste</a>
                         </li>
+                        <!-- <li class="nav-item">
+
+                            <a class="nav-link" title="" href="<?= url("https://tadsbr.com.br/") ?>"><img src="<?= url("public/assets/img/logo.png") ?>" alt="" style="width: 50px; height: 50px;"></a>
+                        </li> -->
                     </ul>
                 </div>
                 <?= $this->section("menu"); ?>

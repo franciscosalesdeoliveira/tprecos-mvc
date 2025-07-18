@@ -13,6 +13,7 @@ class ConfigController extends BaseControllerAdmin
 
     public function index(): void
     {
+        $title = "Configurações";
         $grupo_selecionado = $_GET['grupo'] ?? 'todos';
         $tempo = (int)($_GET['tempo'] ?? 10);
         $limite = (int)($_GET['limite'] ?? 5);
@@ -41,6 +42,7 @@ class ConfigController extends BaseControllerAdmin
         $grupos = Grupos::listaParaSelect();
 
         echo $this->view->render("configuracoes/index", [
+            "title" => $title,
             "grupo_selecionado" => $grupo_selecionado,
             "tempo" => $tempo,
             "limite" => $limite,

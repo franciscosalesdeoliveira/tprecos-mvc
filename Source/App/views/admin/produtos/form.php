@@ -1,4 +1,4 @@
-<?php $this->layout("_theme"); ?>
+<?php $this->layout("_theme", ["title" => $title]); ?>
 
 <?php $this->start("conteudo"); ?>
 

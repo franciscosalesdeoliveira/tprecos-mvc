@@ -35,7 +35,7 @@ $this->layout("_theme");
                     <table class="table table-striped table-hover align-middle">
                         <thead>
                             <tr>
-                                <th style="width: 80px;">Ordem</th>
+                                <th style="width: 80px; ">Ordem</th>
                                 <th class="text-center" style="width: 100px;">Imagem</th>
                                 <th>Título</th>
                                 <th class="text-center" style="width: 100px;">Tipo</th>

@@ -16,6 +16,7 @@ class ImportController extends BaseControllerAdmin
 
     public function index(): void
     {
+        $title = "Importar Produtos CSV";
         try {
             $pdo = \Source\helpers\Connection::getPDO(); // conexão centralizada
 
@@ -23,7 +24,7 @@ class ImportController extends BaseControllerAdmin
             $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             echo $this->view->render("excel/index", [
-                "title" => "Importar Produtos CSV",
+                "title" => $title,
                 "grupos" => $grupos
             ]);
         } catch (PDOException $e) {
@@ -75,7 +76,7 @@ class ImportController extends BaseControllerAdmin
             unset($_SESSION['erro_mensagem']);
 
             // Redireciona para a página de importação usando o helper url()
-            header('Location: ' . url('admin/excel'));
+            header("Location: " . url("admin/excel"));
             exit;
         }
 
@@ -228,20 +229,17 @@ class ImportController extends BaseControllerAdmin
                     $columnExists = $checkStmt->fetchColumn();
 
                     // Prepara a query considerando se o campo 'ativo' existe
-                    if ($columnExists) {
-                        $query_produto = "INSERT INTO produtos (codigo, nome, descricao, grupo_id, preco, ativo) 
-                            VALUES (:codigo, :nome, :descricao, :grupo_id, :preco, TRUE)";
-                    } else {
-                        $query_produto = "INSERT INTO produtos (codigo, nome, descricao, grupo_id, preco) 
-                            VALUES (:codigo, :nome, :descricao, :grupo_id, :preco)";
-                    }
+                    $query_produto = "INSERT INTO produtos (codigo, nome, descricao, grupo_id, preco, ativo) 
+                            VALUES (:codigo, :nome, :descricao, :grupo_id, :preco, 'S')";
+
 
                     $stmt = $this->pdo->prepare($query_produto);
                     $stmt->bindValue(':codigo', $codigo);
                     $stmt->bindValue(':nome', $nome);
                     $stmt->bindValue(':descricao', $descricao);
                     $stmt->bindValue(':grupo_id', $grupo_id);
-                    $stmt->bindValue(':preco', (float)$preco); // Garante que seja tratado como float
+                    $stmt->bindValue(':preco', (float)$preco); // Garante que seja tratado como float.
+
 
                     try {
                         $stmt->execute();

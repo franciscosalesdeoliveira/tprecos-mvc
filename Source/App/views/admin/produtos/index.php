@@ -1,11 +1,11 @@
-<?php $this->layout("_theme"); ?>
-
+<?php $this->layout("_theme", ["title" => $title]); ?>
 <?php $this->start("conteudo"); ?>
+
 
 <a class="btn btn-primary m-3" href="<?= url("admin/produtos/create"); ?>">
     <i class="fas fa-plus"></i> Adicionar
 </a>
-<div class="container-fluid py-4">
+<div class="container py-4">
     <!-- Exibir mensagens de erro -->
     <?php if (!empty($erros)): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -26,20 +26,8 @@
         </div>
     <?php endif; ?>
 
-    <!-- Cabeçalho da Página -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <h1 class="text-center"><?php echo htmlspecialchars($titulo); ?></h1>
-        </div>
-    </div>
-
-
-
-    <div class="row">
-
-    
+    <div class=" row">
         <!-- Coluna da Tabela -->
-         
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -68,17 +56,17 @@
                 </div>
 
                 <!-- Tabela -->
-                <div class="container">
+                <div class="table-responsive">
                     <table class="table table-hover table-striped mb-0">
                         <thead class="sticky-header">
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Nome</th>
-                                <th class="text-center">Descrição</th>
-                                <th class="text-center">Grupo</th>
-                                <th class="text-center">Preço</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center">Ações</th>
+                                <th scope="col" class="text-center">ID</th>
+                                <th scope="col" class="text-center">Nome</th>
+                                <th scope="col" class="text-center">Descrição</th>
+                                <th scope="col" class="text-center">Grupo</th>
+                                <th scope="col" class="text-center">Preço</th>
+                                <th scope="col" class="text-center">Status</th>
+                                <th scope="col" class="text-center">Ações</th>
                             </tr>
                         </thead>
                         <tbody id="tabela-produtos-body">
@@ -138,7 +126,7 @@
     });
 
     function searchData() {
-        window.location = 'cadastro_produtos.php?search=' + search.value;
+        window.location = '<?= url("admin/produtos"); ?>?search=' + search.value;
     }
 
     function filtrarPorStatus(status) {

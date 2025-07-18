@@ -307,7 +307,7 @@
                         </div>
                     </div>
 
-                    <a href="?concluir=1" class="btn">
+                    <a href="<?php echo url('admin/produtos'); ?>" class="btn">
                         <i class="fas fa-check"></i>
                         Concluir Importação
                     </a>
@@ -320,7 +320,7 @@
                     </div>
                     <p><?php echo $_SESSION['erro_mensagem']; ?></p>
 
-                    <a href="excel.php" class="btn">
+                    <a href="<?php echo url('admin/excel'); ?>" class="btn">
                         <i class="fas fa-arrow-left"></i>
                         Voltar para Importação
                     </a>

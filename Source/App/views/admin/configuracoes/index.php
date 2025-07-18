@@ -1,4 +1,4 @@
-<?php $this->layout("_theme"); ?>
+<?php $this->layout("_theme", ["title" => $title]); ?>
 
 <?php $this->start("conteudo"); ?>
 <div class="main-content">
@@ -135,7 +135,7 @@
 
                     <!-- Botões adicionais -->
                     <!-- arrumar a propaganda aqui -->
-                  
+
                 </div>
                 <!-- </div> -->
             </div>

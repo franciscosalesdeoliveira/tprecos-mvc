@@ -1,4 +1,4 @@
-<?php $this->layout("_theme"); ?>
+<?php $this->layout("_theme", ["title" =>  $title]); ?>
 
 <?php $this->start("conteudo"); ?>
 <link rel="stylesheet" href=<?= url("public/assets/css/excel.css"); ?>>
@@ -55,7 +55,7 @@
                                 </button>
                             </div>
 
-                         
+
                         </form>
                     </div>
                 </div>

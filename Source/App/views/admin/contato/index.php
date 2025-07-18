@@ -1,8 +1,6 @@
-<?php var_dump("passei aqui"); ?>
-<?php $this->layout("_theme"); ?>
+<?php $this->layout("_theme", ["title" => $title]); ?>
 
 <?php $this->start("conteudo"); ?>
-<link rel="stylesheet" href="<?= url("public/assets/css/contato.css") ?>">
 <div class="page-wrapper">
     <div class="main-content">
         <div class="contact-container">
@@ -44,7 +42,7 @@
                                 <textarea id="mensagem" name="mensagem" class="form-control" required><?php echo isset($_POST['mensagem']) ? htmlspecialchars($_POST['mensagem']) : ''; ?></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-block">Enviar Mensagem</button>
+                            <button type="submit" class="btn btn-primary btn-block">Enviar Mensagem</button>
                         </form>
                     </div>
 

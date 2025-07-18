@@ -16,6 +16,7 @@ class ContactController extends BaseControllerAdmin
 
     public function index(): void
     {
+        $title = "Fale Conosco";
         $mensagem = '';
         $tipo_mensagem = '';
 
@@ -62,6 +63,7 @@ class ContactController extends BaseControllerAdmin
         }
 
         echo $this->view->render("contato/index", [
+            "title" => $title,
             "mensagem" => $mensagem,
             "tipo_mensagem" => $tipo_mensagem
         ]);

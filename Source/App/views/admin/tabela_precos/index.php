@@ -146,8 +146,8 @@ $propagandas_ativas = $config['propagandas_ativas'];
                                         <table class="table table-striped table-hover border">
                                             <thead class="<?= $estiloAtual['table_header'] ?>">
                                                 <tr>
-                                                    <th class="text-center fs-2" style="width: 70%;">Produto</th>
-                                                    <th class="text-center fs-2" style="width: 30%;">Preço</th>
+                                                    <th class="text-center fs-2" style="width: 70%; position: sticky; top: 0; z-index: 10;">Produto</th>
+                                                    <th class="text-center fs-2" style="width: 30%;; position: sticky; top: 0; z-index: 10;">Preço</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

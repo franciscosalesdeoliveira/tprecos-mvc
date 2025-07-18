@@ -21,8 +21,7 @@ class ProductController extends BaseControllerAdmin
 
     public function index()
     {
-
-        $titulo = "Tabela de Preços";
+        $title = "Listagem de Produtos";
         $erros = [];
         $success = null;
         $nome = $_POST['nome'] ?? '';
@@ -94,7 +93,7 @@ class ProductController extends BaseControllerAdmin
 
         // Renderizar a view passando todas as variáveis necessárias
         echo $this->view->render("produtos/index", [
-            "titulo" => $titulo,
+            "title" => $title,
             "produtos" => $produtos,
             "grupos" => $grupos,
             "erros" => $erros,
@@ -110,13 +109,14 @@ class ProductController extends BaseControllerAdmin
     // Resto dos métodos permanecem iguais...
     public function create(): void
     {
+        $title = "Cadastro de Produtos";
         // Buscar grupos para o formulário
         $sql = "SELECT id, nome FROM grupos ORDER BY nome";
         $stmt = $this->pdo->query($sql);
         $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         echo $this->view->render("produtos/form", [
-            "title" => "Administração - Produtos",
+            "title" => $title,
             "crumb" => "<a href='" . url("admin/produtos/create") . "'>Adicionar Produto</a>",
             "produtos" => (new Produtos())->find()->fetch(true),
             "grupos" => $grupos
@@ -125,6 +125,7 @@ class ProductController extends BaseControllerAdmin
 
     public function update($data): void
     {
+        $title = "Atualização de Produtos";
         // Verifica se o ID foi passado
         if (!isset($data['id']) || empty($data['id']) || !is_numeric($data['id'])) {
             $_SESSION["messageError"] = "ID do produto não informado ou inválido.";
@@ -152,7 +153,7 @@ class ProductController extends BaseControllerAdmin
         $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         echo $this->view->render("produtos/form", [
-            "title" => "Administração - Produtos",
+            "title" => $title,
             "crumb" => "<a href='" . url("admin/produtos/" . $data['id']) . "'>Atualizar Produto</a>",
             "grupos" => $grupos,
             "nome" => $produto['nome'],
